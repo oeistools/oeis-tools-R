@@ -96,7 +96,7 @@ plot_data.BFile <- function(bfile, n = NULL, plot_style = "line", ...) {
   }
 
   if (!is.null(n)) {
-    data <- head(data, as.integer(n))
+    data <- utils::head(data, as.integer(n))
   }
 
   df <- data.frame(index = seq_along(data), value = data)
@@ -116,6 +116,7 @@ plot_data.BFile <- function(bfile, n = NULL, plot_style = "line", ...) {
 fetch_bfile_data <- function(url) {
   tryCatch({
     response <- httr2::request(url) |>
+      httr2::req_user_agent("oeis.tools R package (https://github.com/oeistools/oeis-tools-R)") |>
       httr2::req_timeout(10) |>
       httr2::req_perform()
 
@@ -123,9 +124,9 @@ fetch_bfile_data <- function(url) {
     # The format is typically: index value
     # Some lines might be comments (#) or empty
     # We use scan to read the second column (the value)
-    data_raw <- scan(textConnection(text),
-                    what = list(index = integer(), value = numeric()),
-                    comment.char = "#",
+    data_raw <- scan(textConnection(text), 
+                    what = list(index = integer(), value = numeric()), 
+                    comment.char = "#", 
                     quiet = TRUE)
 
     data <- data_raw$value

@@ -20,6 +20,7 @@ Sequence <- function(oeis_id) {
 
   tryCatch({
     response <- httr2::request(url) |>
+      httr2::req_user_agent("oeis.tools R package (https://github.com/oeistools/oeis-tools-R)") |>
       httr2::req_timeout(10) |>
       httr2::req_perform()
 

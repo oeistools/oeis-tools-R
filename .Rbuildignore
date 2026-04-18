@@ -1,0 +1,11 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.github$
+^\.lintr$
+^\.git$
+^\.gitignore$
+^\.\.Rcheck$
+^implementation_plan\.md$
+^task\.md$
+^walkthrough\.md$
+^oeis\.tools_.*\.tar\.gz$

@@ -1,4 +1,5 @@
 #' OEIS URL constant
+#' @rdname oeis_url
 #' @keywords internal
 OEIS_URL <- "https://oeis.org"
 

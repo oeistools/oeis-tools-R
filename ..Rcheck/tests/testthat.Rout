@@ -1,0 +1,27 @@
+
+R version 4.4.1 (2024-06-14) -- "Race for Your Life"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(testthat)
+> library(oeis.tools)
+oeis.tools 0.2.1 | https://github.com/oeistools/oeis-tools-R
+> 
+> test_check("oeis.tools")
+[ FAIL 0 | WARN 0 | SKIP 0 | PASS 23 ]
+> 
+> proc.time()
+   user  system elapsed 
+  1.377   0.430   1.196 
