@@ -1,0 +1,33 @@
+# History files
+.Rhistory
+.RData
+.Ruserdata
+
+# R project files
+.Rproj.user/
+*.Rproj
+
+# Generated documentation
+man/
+NAMESPACE
+
+# Build artifacts
+*.tar.gz
+*.zip
+*.o
+*.so
+*.a
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# OS files
+Thumbs.db
+
+# Package cache
+.packages
+renv/activate.R
