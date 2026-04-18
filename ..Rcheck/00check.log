@@ -10,7 +10,7 @@
 * checking for file ‘./DESCRIPTION’ ... OK
 * this is package ‘oeis.tools’ version ‘0.2.1’
 * package encoding: UTF-8
-* checking CRAN incoming feasibility ... [7s/23s] NOTE
+* checking CRAN incoming feasibility ... [7s/17s] NOTE
 Maintainer: ‘Enrique Pérez Herrero <energycode.org@gmail.com>’
 
 New submission
@@ -48,8 +48,8 @@ unable to verify current time
 * checking DESCRIPTION meta-information ... NOTE
 Checking should be performed on sources prepared by ‘R CMD build’.
 * checking top-level files ... NOTE
-Non-standard file/directory found at top level:
-  ‘oeis.tools_0.2.0.tar.gz’
+Non-standard files/directories found at top level:
+  ‘LICENSE.md’ ‘oeis.tools_0.2.0.tar.gz’
 * checking for left-over files ... OK
 * checking index information ... OK
 * checking package subdirectories ... WARNING

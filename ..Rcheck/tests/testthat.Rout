@@ -24,4 +24,4 @@ oeis.tools 0.2.1 | https://github.com/oeistools/oeis-tools-R
 > 
 > proc.time()
    user  system elapsed 
-  1.411   0.432   1.256 
+  1.388   0.475   1.188 
