@@ -17,4 +17,4 @@ Suggests: testthat (>= 3.0.0), knitr, rmarkdown, lintr
 URL: https://github.com/oeistools/oeis-tools-R
 BugReports: https://github.com/oeistools/oeis-tools-R/issues
 VignetteBuilder: knitr
-Built: R 4.4.1; ; 2026-04-18 17:22:09 UTC; unix
+Built: R 4.4.1; ; 2026-04-18 17:26:00 UTC; unix

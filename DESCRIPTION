@@ -3,10 +3,9 @@ Title: OEIS Toolkit for R
 Version: 0.2.1
 Author: Enrique Pérez Herrero [aut, cre]
 Maintainer: Enrique Pérez Herrero <energycode.org@gmail.com>
-Description: Focused R toolkit for working with OEIS integer sequences: 
-    fetch metadata, parse b-files, and plot sequence values quickly.
-    Provides an object-oriented interface to the Online 
-    Encyclopedia of Integer Sequences (OEIS) at <https://oeis.org>.
+Description: An R toolkit for programmatic access, analysis, and visualization 
+    of integer sequences from the OEIS (Online Encyclopedia of Integer Sequences). 
+    <https://oeis.org>.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

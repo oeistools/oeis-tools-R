@@ -10,7 +10,7 @@
 * checking for file ‘./DESCRIPTION’ ... OK
 * this is package ‘oeis.tools’ version ‘0.2.1’
 * package encoding: UTF-8
-* checking CRAN incoming feasibility ... [7s/17s] NOTE
+* checking CRAN incoming feasibility ... [7s/23s] NOTE
 Maintainer: ‘Enrique Pérez Herrero <energycode.org@gmail.com>’
 
 New submission

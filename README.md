@@ -1,7 +1,12 @@
 # oeis.tools 🌀
 
-[![R-CMD-check](https://github.com/oeistools/oeis-tools-R/workflows/R-CMD-check/badge.svg)](https://github.com/oeistools/oeis-tools-R/actions)
+[![R-CMD-check](https://github.com/oeistools/oeis-tools-R/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/oeistools/oeis-tools-R/actions/workflows/R-CMD-check.yaml)
+[![lint](https://github.com/oeistools/oeis-tools-R/actions/workflows/lint.yaml/badge.svg)](https://github.com/oeistools/oeis-tools-R/actions/workflows/lint.yaml)
+[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
+[![R-version](https://img.shields.io/badge/R-%3E%3D%204.1.0-blue.svg)](https://cran.r-project.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub issues](https://img.shields.io/github/issues/oeistools/oeis-tools-R.svg)](https://github.com/oeistools/oeis-tools-R/issues)
+[![GitHub last commit](https://img.shields.io/github/last-commit/oeistools/oeis-tools-R.svg)](https://github.com/oeistools/oeis-tools-R/commits/main)
 
 **oeis.tools** is a premium, high-performance R toolkit for interacting with the [Online Encyclopedia of Integer Sequences (OEIS)](https://oeis.org). 
 
@@ -62,7 +67,7 @@ get_xref_ids(fib)
 
 ## 🛠️ Requirements
 
-- R (>= 4.0.0)
+- R (>= 4.1.0)
 - `httr2`
 - `jsonlite`
 - `ggplot2`
