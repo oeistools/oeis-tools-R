@@ -52,13 +52,13 @@ oeis_bfile <- function(oeis_id) {
 #' @export
 oeis_url <- function(oeis_id, fmt = NULL) {
   base_url <- OEIS_URL
-  
+
   if (is.null(fmt)) {
     return(paste0(base_url, "/", oeis_id))
   }
-  
+
   fmt <- tolower(trimws(as.character(fmt)))
-  
+
   switch(fmt,
     json = paste0(base_url, "/search?q=id:", oeis_id, "&fmt=json"),
     text = paste0(base_url, "/search?q=id:", oeis_id, "&fmt=text"),
@@ -111,7 +111,7 @@ oeis_keyword_description <- function(keyword_tag) {
     recycled = "A proposed entry was rejected and the A-number is reused.",
     uned = "Not edited; entry still needs editorial review."
   )
-  
+
   if (is.null(keyword_tag)) return(NULL)
   tag <- tolower(trimws(as.character(keyword_tag)))
   if (tag == "") return(NULL)

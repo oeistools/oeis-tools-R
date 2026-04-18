@@ -13,14 +13,15 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
-Imports:
+Imports: 
     httr2 (>= 0.2.0),
     jsonlite (>= 1.8.0),
     ggplot2 (>= 3.4.0)
-Suggests:
+Suggests: 
     testthat (>= 3.0.0),
     knitr,
-    rmarkdown
+    rmarkdown,
+    lintr
 URL: https://github.com/oeistools/oeis-tools-R
 BugReports: https://github.com/oeistools/oeis-tools-R/issues
 VignetteBuilder: knitr

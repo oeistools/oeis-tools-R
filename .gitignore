@@ -7,10 +7,6 @@
 .Rproj.user/
 *.Rproj
 
-# Generated documentation
-man/
-NAMESPACE
-
 # Build artifacts
 *.tar.gz
 *.zip

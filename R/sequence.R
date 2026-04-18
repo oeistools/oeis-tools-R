@@ -15,22 +15,22 @@ Sequence <- function(oeis_id) {
   if (!check_id(oeis_id)) {
     stop("Invalid OEIS ID: ", oeis_id)
   }
-  
+
   url <- oeis_url(oeis_id, fmt = "json")
-  
+
   tryCatch({
     response <- httr2::request(url) |>
       httr2::req_timeout(10) |>
       httr2::req_perform()
-    
+
     json_data <- jsonlite::fromJSON(httr2::resp_body_string(response))
     seq_data <- json_data$results[[1]]
   }, error = function(e) {
     stop("Failed to fetch sequence: ", e$message)
   })
-  
+
   data <- parse_data_values(seq_data$data)
-  
+
   structure(
     list(
       id = oeis_id,
@@ -62,11 +62,11 @@ get_bfile_info <- function(seq) {
 get_bfile_info.Sequence <- function(seq) {
   bfile <- BFile(seq$id)
   data <- get_bfile_data(bfile)
-  
+
   if (is.null(data)) {
     return(list(available = FALSE, length = 0))
   }
-  
+
   list(available = TRUE, length = length(data))
 }
 
@@ -101,7 +101,7 @@ plot.Sequence <- function(x, ...) {
   }, error = function(e) {
     # Fallback to internal data if b-file fails
     df <- data.frame(index = seq_along(x$data), value = x$data)
-    ggplot2::ggplot(df, ggplot2::aes(x = index, y = value)) +
+    ggplot2::ggplot(df, ggplot2::aes(x = .data$index, y = .data$value)) +
       ggplot2::geom_line() +
       ggplot2::theme_minimal() +
       ggplot2::labs(title = paste0(x$id, ": ", x$name))

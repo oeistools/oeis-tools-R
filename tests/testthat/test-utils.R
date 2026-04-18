@@ -16,10 +16,6 @@ test_that("oeis_url works correctly", {
   expect_match(oeis_url("A000045", fmt = "bfile"), "b000045.txt")
 })
 
-test_with_description <- function(tag, desc) {
-  expect_equal(oeis_keyword_description(tag), desc)
-}
-
 test_that("oeis_keyword_description works", {
   expect_match(oeis_keyword_description("core"), "fundamental")
   expect_null(oeis_keyword_description(NULL))

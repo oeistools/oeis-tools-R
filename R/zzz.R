@@ -5,3 +5,8 @@
     " | https://github.com/oeistools/oeis-tools-R"
   )
 }
+
+# Silence global variable warnings
+if (getRversion() >= "2.15.1") {
+  utils::globalVariables(c(".data", "index", "value"))
+}

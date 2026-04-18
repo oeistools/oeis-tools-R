@@ -13,7 +13,6 @@ test_that("BFile accessor methods work", {
     ),
     class = "BFile"
   )
-  
   expect_equal(get_filename(bf), "b000045.txt")
   expect_equal(get_url(bf), "https://oeis.org/A000045/b000045.txt")
   expect_equal(get_bfile_data(bf), c(0, 1, 1, 2))

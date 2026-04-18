@@ -9,11 +9,11 @@ BFile <- function(oeis_id) {
   if (!check_id(oeis_id)) {
     stop("Invalid OEIS ID: ", oeis_id)
   }
-  
+
   filename <- oeis_bfile(oeis_id)
   url <- oeis_url(oeis_id, fmt = "bfile")
   data <- fetch_bfile_data(url)
-  
+
   structure(
     list(
       oeis_id = oeis_id,
@@ -90,19 +90,25 @@ plot_data <- function(bfile, n = NULL, plot_style = "line", ...) {
 #' @export
 plot_data.BFile <- function(bfile, n = NULL, plot_style = "line", ...) {
   data <- get_bfile_data(bfile)
-  
+
   if (is.null(data) || length(data) == 0) {
     stop("No b-file data available")
   }
-  
+
   if (!is.null(n)) {
     data <- head(data, as.integer(n))
   }
-  
+
   df <- data.frame(index = seq_along(data), value = data)
-  
-  ggplot2::ggplot(df, ggplot2::aes(x = index, y = value)) +
-    {if (plot_style == "scatter") ggplot2::geom_point(...) else ggplot2::geom_line(...)} +
+
+  ggplot2::ggplot(df, ggplot2::aes(x = .data$index, y = .data$value)) +
+    {
+      if (plot_style == "scatter") {
+        ggplot2::geom_point(...)
+      } else {
+        ggplot2::geom_line(...)
+      }
+    } +
     ggplot2::theme_minimal() +
     ggplot2::labs(title = paste0(bfile$oeis_id, " b-file data"))
 }
@@ -112,18 +118,18 @@ fetch_bfile_data <- function(url) {
     response <- httr2::request(url) |>
       httr2::req_timeout(10) |>
       httr2::req_perform()
-    
+
     text <- httr2::resp_body_string(response)
     # The format is typically: index value
     # Some lines might be comments (#) or empty
     # We use scan to read the second column (the value)
-    data_raw <- scan(textConnection(text), 
-                    what = list(index = integer(), value = numeric()), 
-                    comment.char = "#", 
+    data_raw <- scan(textConnection(text),
+                    what = list(index = integer(), value = numeric()),
+                    comment.char = "#",
                     quiet = TRUE)
-    
+
     data <- data_raw$value
-    
+
     if (length(data) == 0) NULL else data
   }, error = function(e) {
     warning("Failed to fetch or parse b-file: ", e$message)
