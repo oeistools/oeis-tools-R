@@ -1,0 +1,76 @@
+---
+title: "Getting Started with oeis.tools"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Started with oeis.tools}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(oeis.tools)
+```
+
+## Introduction
+
+`oeis.tools` is an R package designed to provide a seamless interface to the Online Encyclopedia of Integer Sequences (OEIS). It allows you to fetch sequence metadata, parse extensive b-files, and visualize sequences with ease.
+
+## Fetching a Sequence
+
+The core of the package is the `Sequence` class. You can fetch any sequence using its OEIS ID (e.g., A000045 for Fibonacci numbers).
+
+```{r fetch-example, eval = FALSE}
+# Fetch the Fibonacci sequence
+fib <- Sequence("A000045")
+
+# Access basic information
+fib$id
+fib$name
+```
+
+## Working with B-files
+
+B-files provide a way to access thousands of terms of a sequence, which are often not fully available in the main OEIS entry.
+
+```{r bfile-example, eval = FALSE}
+# Get b-file data for Prime numbers
+primes_bfile <- BFile("A000040")
+
+# Access the data
+data <- get_bfile_data(primes_bfile)
+length(data)
+```
+
+## Visualization
+
+The package integrates with `ggplot2` to provide instant visualizations.
+
+```{r plot-example, eval = FALSE}
+# Plot the first 100 terms of the Fibonacci sequence from its b-file
+plot_data(primes_bfile, n = 100, color = "darkgreen")
+```
+
+## Extracting Cross-References
+
+You can find related sequences using `get_xref_ids()`:
+
+```{r xref-example, eval = FALSE}
+# Get related sequences for Fibonacci
+get_xref_ids(fib)
+```
+
+## Keyword Descriptions
+
+OEIS uses various keyword tags. You can get a human-readable description for these:
+
+```{r keyword-example}
+oeis_keyword_description("core")
+oeis_keyword_description("nice")
+```

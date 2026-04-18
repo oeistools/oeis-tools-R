@@ -117,3 +117,16 @@ oeis_keyword_description <- function(keyword_tag) {
   if (tag == "") return(NULL)
   keyword_map[[tag]]
 }
+
+#' Extract OEIS IDs from text
+#'
+#' @param text Character string to search
+#'
+#' @return Character vector of OEIS IDs
+#'
+#' @export
+extract_oeis_ids <- function(text) {
+  if (is.null(text) || length(text) == 0) return(character(0))
+  matches <- regmatches(text, gregexpr("A\\d{6}", text))
+  unique(unlist(matches))
+}

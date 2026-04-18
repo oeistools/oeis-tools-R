@@ -113,21 +113,22 @@ fetch_bfile_data <- function(url) {
       httr2::req_timeout(10) |>
       httr2::req_perform()
     
-    lines <- strsplit(httr2::resp_body_string(response), "\n")[[1]]
-    data <- integer(0)
+    text <- httr2::resp_body_string(response)
+    # The format is typically: index value
+    # Some lines might be comments (#) or empty
+    # We use scan to read the second column (the value)
+    data_raw <- scan(textConnection(text), 
+                    what = list(index = integer(), value = numeric()), 
+                    comment.char = "#", 
+                    quiet = TRUE)
     
-    for (line in lines) {
-      line <- trimws(line)
-      if (line == "" || grepl("^#", line)) next
-      
-      parts <- strsplit(line, "\\s+")[[1]]
-      if (length(parts) >= 2) {
-        data <- c(data, as.integer(parts[2]))
-      }
-    }
+    data <- data_raw$value
     
     if (length(data) == 0) NULL else data
-  }, error = function(e) NULL)
+  }, error = function(e) {
+    warning("Failed to fetch or parse b-file: ", e$message)
+    NULL
+  })
 }
 
 #' @export

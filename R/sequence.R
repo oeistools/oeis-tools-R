@@ -36,6 +36,11 @@ Sequence <- function(oeis_id) {
       id = oeis_id,
       name = seq_data$name %||% "",
       data = data,
+      comments = seq_data$comment %||% character(0),
+      formula = seq_data$formula %||% character(0),
+      keywords = strsplit(seq_data$keyword %||% "", ",")[[1]],
+      offset = seq_data$offset %||% "",
+      author = seq_data$author %||% "",
       json = seq_data
     ),
     class = "Sequence"
@@ -78,12 +83,39 @@ get_xref_ids <- function(seq) {
 
 #' @export
 get_xref_ids.Sequence <- function(seq) {
-  character(0)
+  xref_text <- paste(seq$json$xref, collapse = " ")
+  extract_oeis_ids(xref_text)
+}
+
+#' Plot Sequence Data
+#'
+#' @param x A Sequence object
+#' @param ... Additional arguments passed to plot_data
+#'
+#' @export
+plot.Sequence <- function(x, ...) {
+  # Try to use b-file for more data, otherwise use available data
+  tryCatch({
+    bfile <- BFile(x$id)
+    plot_data(bfile, ...)
+  }, error = function(e) {
+    # Fallback to internal data if b-file fails
+    df <- data.frame(index = seq_along(x$data), value = x$data)
+    ggplot2::ggplot(df, ggplot2::aes(x = index, y = value)) +
+      ggplot2::geom_line() +
+      ggplot2::theme_minimal() +
+      ggplot2::labs(title = paste0(x$id, ": ", x$name))
+  })
 }
 
 parse_data_values <- function(data_raw) {
   if (is.null(data_raw)) return(integer(0))
   if (is.numeric(data_raw)) return(as.integer(data_raw))
+  if (is.character(data_raw)) {
+    # Handle comma-separated values
+    vals <- strsplit(data_raw, ",")[[1]]
+    return(as.integer(vals))
+  }
   integer(0)
 }
 

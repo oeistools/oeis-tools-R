@@ -12,7 +12,7 @@ Description: A focused R toolkit for working with OEIS integer sequences:
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.3
 Imports:
     httr2 (>= 0.2.0),
     jsonlite (>= 1.8.0),
