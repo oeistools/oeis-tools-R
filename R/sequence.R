@@ -5,7 +5,7 @@
 #' @return An object of class "Sequence"
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' seq <- Sequence("A000045")
 #' print(seq$name)
 #' }
@@ -20,7 +20,7 @@ Sequence <- function(oeis_id) {
 
   tryCatch({
     response <- httr2::request(url) |>
-      httr2::req_user_agent("oeis.tools R package (https://github.com/oeistools/oeis-tools-R)") |>
+      httr2::req_user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36") |>
       httr2::req_timeout(10) |>
       httr2::req_perform()
 

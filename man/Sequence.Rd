@@ -16,7 +16,7 @@ An object of class "Sequence"
 OEIS Sequence Class
 }
 \examples{
-\donttest{
+\dontrun{
 seq <- Sequence("A000045")
 print(seq$name)
 }

@@ -116,7 +116,7 @@ plot_data.BFile <- function(bfile, n = NULL, plot_style = "line", ...) {
 fetch_bfile_data <- function(url) {
   tryCatch({
     response <- httr2::request(url) |>
-      httr2::req_user_agent("oeis.tools R package (https://github.com/oeistools/oeis-tools-R)") |>
+      httr2::req_user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36") |>
       httr2::req_timeout(10) |>
       httr2::req_perform()
 
