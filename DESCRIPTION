@@ -21,7 +21,8 @@ Suggests:
     knitr,
     rmarkdown,
     lintr,
-    IRdisplay
+    IRdisplay,
+    withr
 URL: https://github.com/oeistools/oeis-tools-R
 BugReports: https://github.com/oeistools/oeis-tools-R/issues
 VignetteBuilder: knitr
