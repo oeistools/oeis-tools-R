@@ -1,26 +1,29 @@
 Package: oeis.tools
 Title: OEIS Toolkit for R
-Version: 0.2.1
+Version: 0.3.0
 Author: Enrique Pérez Herrero [aut, cre]
 Maintainer: Enrique Pérez Herrero <energycode.org@gmail.com>
-Description: An R toolkit for programmatic access, analysis, and visualization 
-    of integer sequences from the OEIS (Online Encyclopedia of Integer Sequences). 
+Description: An R toolkit for programmatic access, analysis, and visualization
+    of integer sequences from the OEIS (Online Encyclopedia of Integer Sequences).
     <https://oeis.org>.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 Depends:
     R (>= 4.1.0)
-Imports: 
+Imports:
     httr2 (>= 0.2.0),
     jsonlite (>= 1.8.0),
-    ggplot2 (>= 3.4.0)
-Suggests: 
-    testthat (>= 3.0.0),
+    ggplot2 (>= 3.4.0),
+    gmp (>= 0.7-0)
+Suggests:
+    testthat (>= 3.2.0),
     knitr,
     rmarkdown,
-    lintr
+    lintr,
+    IRdisplay
 URL: https://github.com/oeistools/oeis-tools-R
 BugReports: https://github.com/oeistools/oeis-tools-R/issues
 VignetteBuilder: knitr
+Config/roxygen2/version: 8.0.0
+Config/testthat/edition: 3

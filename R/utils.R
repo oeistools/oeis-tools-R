@@ -3,6 +3,54 @@
 #' @keywords internal
 OEIS_URL <- "https://oeis.org"
 
+.OEIS_USER_AGENT <- paste0(
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 ",
+  "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+)
+
+# GET url as text; raises on HTTP/network failure, caller decides whether to catch it.
+#' @noRd
+.oeis_get_text <- function(url, timeout = 10) {
+  response <- httr2::request(url) |>
+    httr2::req_user_agent(.OEIS_USER_AGENT) |>
+    httr2::req_timeout(timeout) |>
+    httr2::req_perform()
+
+  httr2::resp_body_string(response)
+}
+
+# GET url as raw bytes (e.g. OEIS graph PNGs); raises on failure.
+#' @noRd
+.oeis_get_raw <- function(url, timeout = 10) {
+  response <- httr2::request(url) |>
+    httr2::req_user_agent(.OEIS_USER_AGENT) |>
+    httr2::req_timeout(timeout) |>
+    httr2::req_perform()
+
+  httr2::resp_body_raw(response)
+}
+
+# log10(abs(value)); approximated via leading decimal digits when value
+# overflows double precision (base-10 analogue of the bit-shift trick the
+# Python port uses for out-of-range Python ints).
+#' @noRd
+.safe_log10_abs <- function(value) {
+  magnitude <- abs(value)
+  as_double <- as.numeric(magnitude)
+
+  if (is.finite(as_double)) {
+    return(log10(as_double))
+  }
+
+  digits <- as.character(magnitude)
+  n_digits <- nchar(digits)
+  lead_width <- min(15L, n_digits)
+  lead <- as.numeric(substr(digits, 1, lead_width))
+  shift <- n_digits - lead_width
+
+  log10(lead) + shift
+}
+
 #' Check if an OEIS ID is valid
 #'
 #' Validates that the OEIS ID follows the format: A followed by exactly 6 digits

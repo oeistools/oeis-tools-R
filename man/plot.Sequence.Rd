@@ -9,8 +9,9 @@
 \arguments{
 \item{x}{A Sequence object}
 
-\item{...}{Additional arguments passed to plot_data}
+\item{...}{Additional arguments passed to \code{\link[=plot_data]{plot_data()}}}
 }
 \description{
-Plot Sequence Data
+Prefers the sequence's embedded b-file (richer, longer) and falls back to
+the terms parsed from the OEIS JSON entry.
 }

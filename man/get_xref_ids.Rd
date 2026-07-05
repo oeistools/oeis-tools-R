@@ -10,7 +10,7 @@ get_xref_ids(seq)
 \item{seq}{A Sequence object}
 }
 \value{
-Character vector of OEIS IDs
+Character vector of unique OEIS IDs, in first-seen order
 }
 \description{
 Extract cross-reference IDs

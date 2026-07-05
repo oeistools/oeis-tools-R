@@ -74,3 +74,49 @@ OEIS uses various keyword tags. You can get a human-readable description for the
 oeis_keyword_description("core")
 oeis_keyword_description("nice")
 ```
+
+## Arbitrary-Precision Values
+
+Sequence and b-file terms are stored as `gmp::bigz` values, so terms with
+hundreds of digits are never truncated. `plot_data()` and `plot.Sequence()`
+detect when a value overflows double precision and automatically switch to a
+signed log10 magnitude scale.
+
+```{r bignum-example, eval = FALSE}
+bfile <- BFile("A000040")
+get_bfile_indices(bfile)[1:5]
+get_bfile_data(bfile)[1:5]
+```
+
+## B-file Metadata and Creation
+
+`get_bfile_info()` summarizes the b-file attached to a `Sequence` (length,
+first/last/min/max terms), and `create_bfile()` writes a vector of values out
+to disk in the standard b-file format:
+
+```{r bfile-info-example, eval = FALSE}
+get_bfile_info(fib)
+
+create_bfile("A999999", data = c(1, 1, 2, 3, 5, 8), offset = 0)
+```
+
+## Citing a Sequence
+
+`get_bibtex()` builds a ready-to-use BibTeX `@misc` entry for citing an OEIS
+sequence:
+
+```{r bibtex-example, eval = FALSE}
+cat(get_bibtex(fib))
+```
+
+## Graph Images
+
+Every `Sequence` can download its OEIS-rendered graph image. The PNG bytes
+are cached after the first call:
+
+```{r graph-example, eval = FALSE}
+png_bytes <- get_graph_png(fib)
+
+# Displays inline under Jupyter/IRkernel; otherwise returns the raw bytes
+get_graph_image(fib)
+```

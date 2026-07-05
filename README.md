@@ -15,8 +15,12 @@ Designed for both speed and ease of use, it provides a modern object-oriented in
 ## ✨ Features
 
 - 🚀 **Fast B-file Parsing**: Highly optimized parsing of OEIS b-files using efficient R internals.
-- 📂 **Rich Metadata**: Access comments, formulas, keywords, and cross-references directly.
-- 📊 **Beautiful Visualizations**: Built-in `ggplot2` integration for instant sequence exploration.
+- 🔢 **Arbitrary Precision**: Sequence and b-file terms are stored as `gmp::bigz` values, so terms with hundreds of digits are never truncated.
+- 📂 **Rich Metadata**: Access comments, formulas, keywords, cross-references, authors, dates, and links directly.
+- 📊 **Beautiful Visualizations**: Built-in `ggplot2` integration, with automatic log10-magnitude scaling for extreme values.
+- 📝 **Citable**: Generate a ready-to-use BibTeX entry for any sequence with `get_bibtex()`.
+- 🖼️ **Graph Images**: Download (and cache) the OEIS-rendered graph for a sequence with `get_graph_png()`/`get_graph_image()`.
+- ✍️ **B-file Creation**: Write your own sequence values out to a standard b-file with `create_bfile()`.
 - 🛠️ **Developer Friendly**: Clean, documented API with full support for `httr2` and `jsonlite`.
 
 ## 🚀 Installation
@@ -65,12 +69,36 @@ get_xref_ids(fib)
 # [1] "A000032" "A000071" "A000108" ...
 ```
 
+### Cite a Sequence
+
+```r
+cat(get_bibtex(fib))
+# @misc{A000045,
+#   author       = {N. J. A. Sloane},
+#   title        = {A000045: Fibonacci numbers: F(n) = F(n-1) + F(n-2) with F(0) = 0 and F(1) = 1.},
+#   howpublished = {The {O}n-{L}ine {E}ncyclopedia of {I}nteger {S}equences},
+#   year         = {1991},
+#   month        = apr,
+#   day          = {30},
+#   date         = {1991-04-30},
+#   url          = {https://oeis.org/A000045}
+# }
+```
+
+### Create a B-file
+
+```r
+create_bfile("A999999", data = c(1, 1, 2, 3, 5, 8), offset = 0)
+# [1] "b999999.txt"
+```
+
 ## 🛠️ Requirements
 
 - R (>= 4.1.0)
 - `httr2`
 - `jsonlite`
 - `ggplot2`
+- `gmp`
 
 ---
 

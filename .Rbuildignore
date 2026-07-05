@@ -4,6 +4,7 @@
 ^\.lintr$
 ^\.git$
 ^\.gitignore$
+^\.claude$
 ^\.\.Rcheck$
 ^implementation_plan\.md$
 ^task\.md$

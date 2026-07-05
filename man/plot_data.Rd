@@ -2,21 +2,44 @@
 % Please edit documentation in R/bfile.R
 \name{plot_data}
 \alias{plot_data}
+\alias{plot_data.BFile}
 \title{Plot B-file Data}
 \usage{
 plot_data(bfile, n = NULL, plot_style = "line", ...)
+
+\method{plot_data}{BFile}(
+  bfile,
+  n = NULL,
+  plot_style = "line",
+  p = NULL,
+  show = TRUE,
+  return_plot = FALSE,
+  ...
+)
 }
 \arguments{
 \item{bfile}{A BFile object}
 
-\item{n}{Number of points to plot}
+\item{n}{Number of leading points to plot. When NULL (default), all
+available points are plotted}
 
-\item{plot_style}{"line" or "scatter"}
+\item{plot_style}{One of "line" (default), "joined" (alias for "line"),
+or "scatter"}
 
-\item{...}{Additional arguments}
+\item{...}{Additional aesthetic parameters forwarded to \code{geom_line()} or
+\code{geom_point()}}
+
+\item{p}{An existing ggplot object to layer onto, or NULL to create a new
+plot}
+
+\item{show}{Logical; print the plot when TRUE (default)}
+
+\item{return_plot}{Logical; return the ggplot object when TRUE. Defaults
+to FALSE}
 }
 \value{
-A ggplot2 plot
+A ggplot2 plot object when \code{return_plot = TRUE}; otherwise
+invisible NULL
 }
 \description{
 Plot B-file Data

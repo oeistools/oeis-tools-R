@@ -10,7 +10,8 @@ get_bfile_info(seq)
 \item{seq}{A Sequence object}
 }
 \value{
-List with b-file metadata
+List with b-file metadata: available, filename, url, length,
+first, last, min, max
 }
 \description{
 Get B-file Information

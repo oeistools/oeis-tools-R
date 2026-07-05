@@ -10,7 +10,7 @@ get_bfile_data(bfile)
 \item{bfile}{A BFile object}
 }
 \value{
-Integer vector or NULL
+A \code{gmp::bigz} vector or NULL
 }
 \description{
 Get B-file Data
