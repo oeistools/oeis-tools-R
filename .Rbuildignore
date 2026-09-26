@@ -15,3 +15,5 @@
 ^CITATION\.cff$
 ^cran-comments\.md$
 ^CRAN-SUBMISSION$
+^PLAN\.md$
+^CLAUDE\.md$
