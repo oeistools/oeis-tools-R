@@ -9,8 +9,10 @@ them with 'ggplot2'.
 
 ## Test environments
 
-* Local: Ubuntu Linux, R release
-* GitHub Actions: ubuntu-latest, R release (OEIS unreachable: online examples skipped)
+* Local: Ubuntu Linux, R 4.5.2
+* GitHub Actions: Ubuntu 24.04, R 4.6.1 (OEIS unreachable: online examples skipped)
+* mac builder: macOS Tahoe 26.6 (aarch64), R 4.6.1 Patched -- OK, 0 notes
+* win-builder: Windows (x86_64-w64-mingw32), R-devel (2026-09-25 r90590 ucrt) -- 1 NOTE (see below)
 
 ## R CMD check results
 
@@ -21,6 +23,11 @@ them with 'ggplot2'.
   New submission
 
   This is a new submission.
+
+  Possibly misspelled words in DESCRIPTION: OEIS
+
+  This is not a misspelling: OEIS is the standard acronym of the On-Line
+  Encyclopedia of Integer Sequences, which is spelled out in the Description.
 
 ## Internet access
 
