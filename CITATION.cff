@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "oeis.tools: OEIS Toolkit for R"
+abstract: >-
+  An R toolkit for programmatic access, analysis, and visualization of
+  integer sequences from the OEIS (Online Encyclopedia of Integer Sequences).
+authors:
+  - family-names: "Pérez Herrero"
+    given-names: "Enrique"
+    email: energycode.org@gmail.com
+version: 0.3.0
+date-released: 2026-09-26
+license: MIT
+repository-code: "https://github.com/oeistools/oeis-tools-R"
+url: "https://github.com/oeistools/oeis-tools-R"
+keywords:
+  - R
+  - OEIS
+  - integer sequences

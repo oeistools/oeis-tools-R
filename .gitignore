@@ -27,3 +27,9 @@ Thumbs.db
 # Package cache
 .packages
 renv/activate.R
+
+# Local development scratchpad
+development.Rmd
+
+# R CMD check output
+*.Rcheck/

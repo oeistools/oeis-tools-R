@@ -1,8 +1,8 @@
 Package: oeis.tools
 Title: OEIS Toolkit for R
 Version: 0.3.0
-Author: Enrique Pérez Herrero [aut, cre]
-Maintainer: Enrique Pérez Herrero <energycode.org@gmail.com>
+Authors@R:
+    person("Enrique", "Pérez Herrero", , "energycode.org@gmail.com", role = c("aut", "cre"))
 Description: An R toolkit for programmatic access, analysis, and visualization
     of integer sequences from the OEIS (Online Encyclopedia of Integer Sequences).
     <https://oeis.org>.
@@ -26,5 +26,5 @@ Suggests:
 URL: https://github.com/oeistools/oeis-tools-R
 BugReports: https://github.com/oeistools/oeis-tools-R/issues
 VignetteBuilder: knitr
-Config/roxygen2/version: 8.0.0
+Config/roxygen2/version: 8.1.0
 Config/testthat/edition: 3

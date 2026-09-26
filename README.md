@@ -10,13 +10,13 @@
 
 R interface to the [Online Encyclopedia of Integer Sequences (OEIS)](https://oeis.org). Fetches sequence metadata and b-files, parses them into S3 objects (`Sequence`, `BFile`), and plots terms with `ggplot2`. Terms are stored as `gmp::bigz` values, so precision is not lost for sequences whose terms exceed double-precision range.
 
-R port of [oeis-tools](https://github.com/oeistools/oeis-tools) (Python).
+This is the R port of [oeis-tools](https://github.com/oeistools/oeis-tools), the Python package by the same author. The public API (function and class names) matches the Python package where R's type system and idioms allow it.
 
 ## Installation
 
 ```r
-# install.packages("devtools")
-devtools::install_github("oeistools/oeis-tools-R")
+# install.packages("pak")
+pak::pak("oeistools/oeis-tools-R")
 ```
 
 ## Usage
@@ -119,3 +119,11 @@ cat(get_bibtex(fib))
 - `jsonlite`
 - `ggplot2`
 - `gmp`
+
+## Citation
+
+```r
+citation("oeis.tools")
+```
+
+A `CITATION.cff` file is also provided (GitHub's "Cite this repository" button).

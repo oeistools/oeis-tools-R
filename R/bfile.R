@@ -148,7 +148,7 @@ plot_data <- function(bfile, n = NULL, plot_style = "line", ...) {
 #'   to FALSE
 #' @export
 plot_data.BFile <- function(bfile, n = NULL, plot_style = "line", p = NULL,
-                             show = TRUE, return_plot = FALSE, ...) {
+                            show = TRUE, return_plot = FALSE, ...) {
   values <- get_bfile_data(bfile)
   if (is.null(values) || length(values) == 0) {
     stop("No b-file data available to plot")
@@ -216,8 +216,8 @@ plot_data.BFile <- function(bfile, n = NULL, plot_style = "line", p = NULL,
   existing_title <- if (is.null(p)) NULL else p$labels$title
   new_title <- paste0(bfile$oeis_id, title_suffix)
   if (!is.null(existing_title) && nzchar(existing_title) &&
-      !grepl(bfile$oeis_id, existing_title, fixed = TRUE) &&
-      endsWith(existing_title, title_suffix)) {
+        !grepl(bfile$oeis_id, existing_title, fixed = TRUE) &&
+        endsWith(existing_title, title_suffix)) {
     title <- sub(title_suffix, paste0(" + ", bfile$oeis_id, title_suffix), existing_title, fixed = TRUE)
   } else {
     title <- new_title
