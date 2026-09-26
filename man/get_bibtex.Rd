@@ -15,3 +15,10 @@ Character string with a BibTeX \verb{@misc} entry
 \description{
 Build a BibTeX @misc entry citing this OEIS sequence
 }
+\examples{
+\donttest{
+fib <- Sequence("A000045")
+cat(get_bibtex(fib))
+}
+
+}

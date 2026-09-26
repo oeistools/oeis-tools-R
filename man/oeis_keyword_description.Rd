@@ -15,3 +15,8 @@ Character string with description or NULL
 \description{
 Get OEIS keyword description
 }
+\examples{
+oeis_keyword_description("core")
+oeis_keyword_description("nonn")
+
+}

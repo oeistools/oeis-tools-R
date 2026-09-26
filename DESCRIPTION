@@ -1,13 +1,15 @@
 Package: oeis.tools
-Title: OEIS Toolkit for R
-Version: 0.3.0
+Title: Access and Visualize Integer Sequences from the OEIS
+Version: 0.3.1
 Authors@R:
     person("Enrique", "Pérez Herrero", , "energycode.org@gmail.com", role = c("aut", "cre"))
-Description: An R toolkit for programmatic access, analysis, and visualization
-    of integer sequences from the OEIS (Online Encyclopedia of Integer Sequences).
-    <https://oeis.org>.
+Description: Programmatic access, analysis, and visualization of integer
+    sequences from the On-Line Encyclopedia of Integer Sequences (OEIS)
+    <https://oeis.org>. Fetches sequence metadata and b-files, stores terms as
+    arbitrary-precision integers via 'gmp', and plots them with 'ggplot2'.
 License: MIT + file LICENSE
 Encoding: UTF-8
+Language: en-US
 Roxygen: list(markdown = TRUE)
 Depends:
     R (>= 4.1.0)

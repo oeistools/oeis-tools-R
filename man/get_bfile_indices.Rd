@@ -15,3 +15,10 @@ Integer vector of the first-column indices, or NULL when parsing failed
 \description{
 Get B-file Indices
 }
+\examples{
+\donttest{
+primes <- BFile("A000040")
+head(get_bfile_indices(primes))
+}
+
+}

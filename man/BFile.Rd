@@ -7,11 +7,21 @@
 BFile(oeis_id)
 }
 \arguments{
-\item{oeis_id}{Character string (e.g., "A000045")}
+\item{oeis_id}{Character string (e.g., "A000045")
+
+Downloads the b-file (list of \verb{n a(n)} pairs) of an OEIS sequence. If the
+download or parsing fails, a warning is issued and the object holds no data.}
 }
 \value{
 An object of class "BFile"
 }
 \description{
 OEIS B-file Class
+}
+\examples{
+\donttest{
+primes <- BFile("A000040")
+primes
+}
+
 }

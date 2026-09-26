@@ -11,14 +11,16 @@ Sequence(oeis_id)
 }
 \value{
 An object of class "Sequence"
+
+Fetches an OEIS entry (and its b-file) over the internet.
 }
 \description{
 OEIS Sequence Class
 }
 \examples{
-\dontrun{
-seq <- Sequence("A000045")
-print(seq$name)
+\donttest{
+fib <- Sequence("A000045")
+fib$name
 }
 
 }

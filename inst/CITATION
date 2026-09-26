@@ -1,12 +1,12 @@
 bibentry(
   bibtype = "Manual",
-  title   = "{oeis.tools}: OEIS Toolkit for R",
+  title   = "{oeis.tools}: Access and Visualize Integer Sequences from the {OEIS}",
   author  = person("Enrique", "Pérez Herrero", email = "energycode.org@gmail.com"),
   year    = "2026",
   note    = paste("R package version", meta$Version),
   url     = "https://github.com/oeistools/oeis-tools-R",
   textVersion = paste0(
-    "Pérez Herrero E (2026). oeis.tools: OEIS Toolkit for R. R package version ",
+    "Pérez Herrero E (2026). oeis.tools: Access and Visualize Integer Sequences from the OEIS. R package version ",
     meta$Version, ". https://github.com/oeistools/oeis-tools-R"
   )
 )

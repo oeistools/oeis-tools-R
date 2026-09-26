@@ -11,10 +11,12 @@
 #'
 #' @return An object of class "Sequence"
 #'
+#' Fetches an OEIS entry (and its b-file) over the internet.
+#'
 #' @examples
-#' \dontrun{
-#' seq <- Sequence("A000045")
-#' print(seq$name)
+#' \donttest{
+#' fib <- Sequence("A000045")
+#' fib$name
 #' }
 #'
 #' @export
@@ -26,6 +28,9 @@ Sequence <- function(oeis_id) {
   url <- oeis_url(oeis_id, fmt = "json")
   text <- .oeis_get_text(url)
   json_data <- jsonlite::fromJSON(text, simplifyDataFrame = FALSE, simplifyVector = TRUE)
+  if (length(json_data) == 0) {
+    stop("No OEIS entry found for ", oeis_id, call. = FALSE)
+  }
   seq_data <- json_data[[1]]
 
   seq <- new.env(parent = emptyenv())
@@ -72,6 +77,12 @@ Sequence <- function(oeis_id) {
 #' @return List with b-file metadata: available, filename, url, length,
 #'   first, last, min, max
 #'
+#' @examples
+#' \donttest{
+#' fib <- Sequence("A000045")
+#' get_bfile_info(fib)
+#' }
+#'
 #' @export
 get_bfile_info <- function(seq) {
   UseMethod("get_bfile_info")
@@ -113,6 +124,12 @@ get_bfile_info.Sequence <- function(seq) {
 #'
 #' @return Character vector of unique OEIS IDs, in first-seen order
 #'
+#' @examples
+#' \donttest{
+#' fib <- Sequence("A000045")
+#' head(get_xref_ids(fib))
+#' }
+#'
 #' @export
 get_xref_ids <- function(seq) {
   UseMethod("get_xref_ids")
@@ -131,6 +148,13 @@ get_xref_ids.Sequence <- function(seq) {
 #'   (default)
 #'
 #' @return Raw vector of PNG bytes
+#'
+#' @examples
+#' \donttest{
+#' fib <- Sequence("A000045")
+#' png_bytes <- get_graph_png(fib)
+#' length(png_bytes)
+#' }
 #'
 #' @export
 get_graph_png <- function(seq, timeout = 10, use_cache = TRUE) {
@@ -151,7 +175,8 @@ get_graph_png.Sequence <- function(seq, timeout = 10, use_cache = TRUE) {
 
 #' Retrieve the OEIS graph image for display
 #'
-#' Uses `IRdisplay::display_png()` when running under Jupyter/IRkernel;
+#' Uses `IRdisplay::display_png()` when running inside a Jupyter/IRkernel
+#' session;
 #' otherwise returns the raw PNG bytes.
 #'
 #' @param seq A Sequence object
@@ -162,6 +187,12 @@ get_graph_png.Sequence <- function(seq, timeout = 10, use_cache = TRUE) {
 #'
 #' @return Raw vector of PNG bytes (invisibly, when displayed via IRdisplay)
 #'
+#' @examples
+#' \donttest{
+#' fib <- Sequence("A000045")
+#' img <- get_graph_image(fib)
+#' }
+#'
 #' @export
 get_graph_image <- function(seq, width = NULL, height = NULL, timeout = 10, use_cache = TRUE) {
   UseMethod("get_graph_image")
@@ -171,8 +202,9 @@ get_graph_image <- function(seq, width = NULL, height = NULL, timeout = 10, use_
 get_graph_image.Sequence <- function(seq, width = NULL, height = NULL, timeout = 10, use_cache = TRUE) {
   png_bytes <- get_graph_png(seq, timeout = timeout, use_cache = use_cache)
 
-  if (requireNamespace("IRdisplay", quietly = TRUE)) {
-    IRdisplay::display_png(raw = png_bytes, width = width, height = height)
+  in_jupyter <- isTRUE(getOption("jupyter.in_kernel"))
+  if (in_jupyter && requireNamespace("IRdisplay", quietly = TRUE)) {
+    IRdisplay::display_png(data = png_bytes, width = width, height = height)
     return(invisible(png_bytes))
   }
 
@@ -184,6 +216,12 @@ get_graph_image.Sequence <- function(seq, width = NULL, height = NULL, timeout =
 #' @param seq A Sequence object
 #'
 #' @return A `gmp::bigz` vector of terms
+#'
+#' @examples
+#' \donttest{
+#' fib <- Sequence("A000045")
+#' get_data_values(fib)[1:10]
+#' }
 #'
 #' @export
 get_data_values <- function(seq) {
@@ -204,6 +242,12 @@ get_data_values.Sequence <- function(seq) {
 #'
 #' @return Character string with description, or NULL
 #'
+#' @examples
+#' \donttest{
+#' fib <- Sequence("A000045")
+#' get_keyword_description(fib, fib$keyword[1])
+#' }
+#'
 #' @export
 get_keyword_description <- function(seq, keyword_tag) {
   UseMethod("get_keyword_description")
@@ -219,6 +263,12 @@ get_keyword_description.Sequence <- function(seq, keyword_tag) {
 #' @param seq A Sequence object
 #'
 #' @return Character string with a BibTeX `@misc` entry
+#'
+#' @examples
+#' \donttest{
+#' fib <- Sequence("A000045")
+#' cat(get_bibtex(fib))
+#' }
 #'
 #' @export
 get_bibtex <- function(seq) {
@@ -270,6 +320,15 @@ get_bibtex.Sequence <- function(seq) {
 #'
 #' @param x A Sequence object
 #' @param ... Additional arguments passed to [plot_data()]
+#'
+#' @return The value returned by [plot_data()]: a ggplot object when
+#'   `return_plot = TRUE`, otherwise invisible NULL
+#'
+#' @examples
+#' \donttest{
+#' fib <- Sequence("A000045")
+#' plot(fib, n = 50)
+#' }
 #'
 #' @export
 plot.Sequence <- function(x, ...) {

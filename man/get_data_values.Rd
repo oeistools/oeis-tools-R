@@ -15,3 +15,10 @@ A \code{gmp::bigz} vector of terms
 \description{
 Return the parsed sequence data terms
 }
+\examples{
+\donttest{
+fib <- Sequence("A000045")
+get_data_values(fib)[1:10]
+}
+
+}

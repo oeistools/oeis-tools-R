@@ -13,3 +13,4 @@
 ^oeis\.tools_.*\.tar\.gz$
 ^development\.Rmd$
 ^CITATION\.cff$
+^cran-comments\.md$

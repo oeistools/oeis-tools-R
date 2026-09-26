@@ -97,7 +97,8 @@ to disk in the standard b-file format:
 ```{r bfile-info-example, eval = FALSE}
 get_bfile_info(fib)
 
-create_bfile("A999999", data = c(1, 1, 2, 3, 5, 8), offset = 0)
+create_bfile("A999999", data = c(1, 1, 2, 3, 5, 8), offset = 0,
+             output_path = tempdir())
 ```
 
 ## Citing a Sequence

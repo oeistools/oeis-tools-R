@@ -11,7 +11,18 @@
 
 \item{...}{Additional arguments passed to \code{\link[=plot_data]{plot_data()}}}
 }
+\value{
+The value returned by \code{\link[=plot_data]{plot_data()}}: a ggplot object when
+\code{return_plot = TRUE}, otherwise invisible NULL
+}
 \description{
 Prefers the sequence's embedded b-file (richer, longer) and falls back to
 the terms parsed from the OEIS JSON entry.
+}
+\examples{
+\donttest{
+fib <- Sequence("A000045")
+plot(fib, n = 50)
+}
+
 }

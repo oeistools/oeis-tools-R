@@ -74,3 +74,18 @@ test_that(".safe_log10_abs approximates magnitude for values beyond double range
   huge <- gmp::as.bigz(paste0("1", strrep("0", 400)))
   expect_equal(.safe_log10_abs(huge), 400, tolerance = 1e-6)
 })
+
+test_that("requests identify the package in the User-Agent", {
+  expect_match(.OEIS_USER_AGENT, "^oeis\\.tools R package")
+})
+
+test_that("network failures raise an informative error naming the URL", {
+  testthat::local_mocked_bindings(
+    req_perform = function(req, ...) stop("Could not resolve host"),
+    .package = "httr2"
+  )
+  expect_error(
+    .oeis_get_text("https://oeis.org/A000045"),
+    "Could not retrieve https://oeis.org/A000045 from the OEIS.*Could not resolve host"
+  )
+})

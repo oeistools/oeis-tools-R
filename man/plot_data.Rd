@@ -44,3 +44,11 @@ invisible NULL
 \description{
 Plot B-file Data
 }
+\examples{
+\donttest{
+primes <- BFile("A000040")
+plot_data(primes, n = 100, plot_style = "scatter")
+g <- plot_data(primes, n = 100, show = FALSE, return_plot = TRUE)
+}
+
+}

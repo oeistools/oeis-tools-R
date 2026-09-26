@@ -15,3 +15,10 @@ A \code{gmp::bigz} vector or NULL
 \description{
 Get B-file Data
 }
+\examples{
+\donttest{
+primes <- BFile("A000040")
+head(get_bfile_data(primes))
+}
+
+}

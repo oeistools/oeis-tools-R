@@ -3,31 +3,35 @@
 #' @keywords internal
 OEIS_URL <- "https://oeis.org"
 
-.OEIS_USER_AGENT <- paste0(
-  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 ",
-  "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-)
+.OEIS_USER_AGENT <- "oeis.tools R package (https://github.com/oeistools/oeis-tools-R)"
+
+# Perform a GET request; network/HTTP failures are re-raised with an
+# informative message naming the URL.
+#' @noRd
+.oeis_perform <- function(url, timeout = 10) {
+  request <- httr2::request(url) |>
+    httr2::req_user_agent(.OEIS_USER_AGENT) |>
+    httr2::req_timeout(timeout)
+
+  tryCatch(httr2::req_perform(request), error = function(e) {
+    stop(
+      "Could not retrieve ", url, " from the OEIS (",
+      conditionMessage(e), "). Check your internet connection or try again later.",
+      call. = FALSE
+    )
+  })
+}
 
 # GET url as text; raises on HTTP/network failure, caller decides whether to catch it.
 #' @noRd
 .oeis_get_text <- function(url, timeout = 10) {
-  response <- httr2::request(url) |>
-    httr2::req_user_agent(.OEIS_USER_AGENT) |>
-    httr2::req_timeout(timeout) |>
-    httr2::req_perform()
-
-  httr2::resp_body_string(response)
+  httr2::resp_body_string(.oeis_perform(url, timeout = timeout))
 }
 
 # GET url as raw bytes (e.g. OEIS graph PNGs); raises on failure.
 #' @noRd
 .oeis_get_raw <- function(url, timeout = 10) {
-  response <- httr2::request(url) |>
-    httr2::req_user_agent(.OEIS_USER_AGENT) |>
-    httr2::req_timeout(timeout) |>
-    httr2::req_perform()
-
-  httr2::resp_body_raw(response)
+  httr2::resp_body_raw(.oeis_perform(url, timeout = timeout))
 }
 
 # log10(abs(value)); approximated via leading decimal digits when value
@@ -123,6 +127,10 @@ oeis_url <- function(oeis_id, fmt = NULL) {
 #'
 #' @return Character string with description or NULL
 #'
+#' @examples
+#' oeis_keyword_description("core")
+#' oeis_keyword_description("nonn")
+#'
 #' @export
 oeis_keyword_description <- function(keyword_tag) {
   keyword_map <- list(
@@ -172,6 +180,9 @@ oeis_keyword_description <- function(keyword_tag) {
 #' @param text Character string to search
 #'
 #' @return Character vector of OEIS IDs
+#'
+#' @examples
+#' extract_oeis_ids("Cf. A000045, A000032 and A000045.")
 #'
 #' @export
 extract_oeis_ids <- function(text) {

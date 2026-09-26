@@ -218,6 +218,43 @@ test_that("get_graph_png bypasses the cache when use_cache = FALSE", {
   expect_equal(calls, 2L)
 })
 
+test_that("get_graph_image returns PNG bytes outside Jupyter", {
+  payload <- .build_seq_json(list(id = "M0001 N0001"))
+  testthat::local_mocked_bindings(.oeis_get_text = .fake_get_text_for(payload))
+  seq <- Sequence("A000001")
+  png_bytes <- as.raw(c(0x89, 0x50, 0x4e, 0x47))
+  testthat::local_mocked_bindings(.oeis_get_raw = function(url, timeout = 10) png_bytes)
+  withr::local_options(jupyter.in_kernel = NULL)
+
+  expect_equal(get_graph_image(seq), png_bytes)
+})
+
+test_that("get_graph_image displays via IRdisplay inside Jupyter", {
+  skip_if_not_installed("IRdisplay")
+  payload <- .build_seq_json(list(id = "M0001 N0001"))
+  testthat::local_mocked_bindings(.oeis_get_text = .fake_get_text_for(payload))
+  seq <- Sequence("A000001")
+  png_bytes <- as.raw(c(0x89, 0x50, 0x4e, 0x47))
+  testthat::local_mocked_bindings(.oeis_get_raw = function(url, timeout = 10) png_bytes)
+  withr::local_options(jupyter.in_kernel = TRUE)
+
+  shown <- NULL
+  testthat::local_mocked_bindings(
+    display_png = function(data = NULL, file = NULL, width = NULL, height = NULL) {
+      shown <<- list(data = data, width = width)
+    },
+    .package = "IRdisplay"
+  )
+
+  expect_invisible(get_graph_image(seq, width = 300))
+  expect_equal(shown, list(data = png_bytes, width = 300))
+})
+
+test_that("Sequence errors clearly when the OEIS has no entry", {
+  testthat::local_mocked_bindings(.oeis_get_text = .fake_get_text_for("null"))
+  expect_error(Sequence("A999999"), "No OEIS entry found for A999999")
+})
+
 test_that("link parsing falls back to href substitution when there is no anchor tag", {
   payload <- .build_seq_json(list(
     id = "M0001 N0001",

@@ -20,3 +20,11 @@ Raw vector of PNG bytes
 \description{
 Download the OEIS graph image as PNG bytes
 }
+\examples{
+\donttest{
+fib <- Sequence("A000045")
+png_bytes <- get_graph_png(fib)
+length(png_bytes)
+}
+
+}

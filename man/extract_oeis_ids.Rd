@@ -15,3 +15,7 @@ Character vector of OEIS IDs
 \description{
 Extract OEIS IDs from text
 }
+\examples{
+extract_oeis_ids("Cf. A000045, A000032 and A000045.")
+
+}

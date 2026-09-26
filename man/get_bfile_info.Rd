@@ -16,3 +16,10 @@ first, last, min, max
 \description{
 Get B-file Information
 }
+\examples{
+\donttest{
+fib <- Sequence("A000045")
+get_bfile_info(fib)
+}
+
+}

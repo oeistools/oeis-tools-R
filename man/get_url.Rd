@@ -15,3 +15,10 @@ Character string
 \description{
 Get B-file URL
 }
+\examples{
+\donttest{
+primes <- BFile("A000040")
+get_url(primes)
+}
+
+}

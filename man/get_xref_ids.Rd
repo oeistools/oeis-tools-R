@@ -15,3 +15,10 @@ Character vector of unique OEIS IDs, in first-seen order
 \description{
 Extract cross-reference IDs
 }
+\examples{
+\donttest{
+fib <- Sequence("A000045")
+head(get_xref_ids(fib))
+}
+
+}

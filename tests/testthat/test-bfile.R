@@ -38,14 +38,9 @@ test_that("BFile data is NULL for a malformed line", {
   expect_null(get_bfile_data(bfile))
 })
 
-test_that("create_bfile writes to the working directory by default", {
-  dir <- withr::local_tempdir()
-  withr::local_dir(dir)
-
-  result <- create_bfile("A123456", c(10, 20))
-
-  expect_equal(result, "b123456.txt")
-  expect_equal(readLines(result), c("1 10", "2 20"))
+test_that("create_bfile requires an output_path", {
+  expect_error(create_bfile("A123456", c(10, 20)), "output_path must be supplied")
+  expect_error(create_bfile("A123456", c(10, 20), output_path = NULL), "output_path must be supplied")
 })
 
 test_that("create_bfile writes into a directory when output_path is a dir", {

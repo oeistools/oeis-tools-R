@@ -58,8 +58,8 @@ plot_data(primes, n = 1000, color = "royalblue")
 `plot_data()` accepts `plot_style = "line" | "joined" | "scatter"`, `p` to layer onto an existing `ggplot` object, and `return_plot = TRUE` to get the object back instead of (or in addition to) printing it. When a term exceeds double-precision range, the plot falls back to a signed `log10(|value|)` axis rather than truncating or erroring.
 
 ```r
-create_bfile("A999999", data = c(1, 1, 2, 3, 5, 8), offset = 0)
-# [1] "b999999.txt"
+create_bfile("A999999", data = c(1, 1, 2, 3, 5, 8), offset = 0, output_path = tempdir())
+# [1] "/tmp/RtmpXXXX/b999999.txt"
 ```
 
 ### Cross-references and keywords

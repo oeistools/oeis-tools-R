@@ -2,7 +2,16 @@
 #'
 #' @param oeis_id Character string (e.g., "A000045")
 #'
+#' Downloads the b-file (list of `n a(n)` pairs) of an OEIS sequence. If the
+#' download or parsing fails, a warning is issued and the object holds no data.
+#'
 #' @return An object of class "BFile"
+#'
+#' @examples
+#' \donttest{
+#' primes <- BFile("A000040")
+#' primes
+#' }
 #'
 #' @export
 BFile <- function(oeis_id) {
@@ -31,6 +40,12 @@ BFile <- function(oeis_id) {
 #'
 #' @return Character string
 #'
+#' @examples
+#' \donttest{
+#' primes <- BFile("A000040")
+#' get_filename(primes)
+#' }
+#'
 #' @export
 get_filename <- function(bfile) {
   UseMethod("get_filename")
@@ -46,6 +61,12 @@ get_filename.BFile <- function(bfile) {
 #' @param bfile A BFile object
 #'
 #' @return Character string
+#'
+#' @examples
+#' \donttest{
+#' primes <- BFile("A000040")
+#' get_url(primes)
+#' }
 #'
 #' @export
 get_url <- function(bfile) {
@@ -63,6 +84,12 @@ get_url.BFile <- function(bfile) {
 #'
 #' @return A `gmp::bigz` vector or NULL
 #'
+#' @examples
+#' \donttest{
+#' primes <- BFile("A000040")
+#' head(get_bfile_data(primes))
+#' }
+#'
 #' @export
 get_bfile_data <- function(bfile) {
   UseMethod("get_bfile_data")
@@ -78,6 +105,12 @@ get_bfile_data.BFile <- function(bfile) {
 #' @param bfile A BFile object
 #'
 #' @return Integer vector of the first-column indices, or NULL when parsing failed
+#'
+#' @examples
+#' \donttest{
+#' primes <- BFile("A000040")
+#' head(get_bfile_indices(primes))
+#' }
 #'
 #' @export
 get_bfile_indices <- function(bfile) {
@@ -98,19 +131,26 @@ get_bfile_indices.BFile <- function(bfile) {
 #' @param data Vector of sequence values (numeric, integer, character, or
 #'   `gmp::bigz`)
 #' @param offset Integer starting index. Defaults to 1
-#' @param output_path Directory or exact file path to save the b-file. If
-#'   `NULL` (default), saves to the current working directory using the
-#'   standard b-file name (e.g., "b213676.txt")
+#' @param output_path Directory or exact file path to save the b-file. When
+#'   a directory is given, the standard b-file name (e.g., "b213676.txt") is
+#'   used inside it
 #'
 #' @return Character string: the path to the created b-file
 #'
+#' @examples
+#' path <- create_bfile("A000045", c(0, 1, 1, 2, 3, 5, 8), offset = 0,
+#'                      output_path = tempdir())
+#' readLines(path)
+#' unlink(path)
+#'
 #' @export
-create_bfile <- function(oeis_id, data, offset = 1L, output_path = NULL) {
+create_bfile <- function(oeis_id, data, offset = 1L, output_path) {
+  if (missing(output_path) || is.null(output_path)) {
+    stop("output_path must be supplied (a directory or a file path).")
+  }
   filename <- oeis_bfile(oeis_id)
 
-  if (is.null(output_path)) {
-    file_path <- filename
-  } else if (dir.exists(output_path)) {
+  if (dir.exists(output_path)) {
     file_path <- file.path(output_path, filename)
   } else {
     file_path <- output_path
@@ -134,6 +174,13 @@ create_bfile <- function(oeis_id, data, offset = 1L, output_path = NULL) {
 #'
 #' @return A ggplot2 plot object when `return_plot = TRUE`; otherwise
 #'   invisible NULL
+#'
+#' @examples
+#' \donttest{
+#' primes <- BFile("A000040")
+#' plot_data(primes, n = 100, plot_style = "scatter")
+#' g <- plot_data(primes, n = 100, show = FALSE, return_plot = TRUE)
+#' }
 #'
 #' @export
 plot_data <- function(bfile, n = NULL, plot_style = "line", ...) {

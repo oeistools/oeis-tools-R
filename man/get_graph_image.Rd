@@ -27,6 +27,14 @@ get_graph_image(
 Raw vector of PNG bytes (invisibly, when displayed via IRdisplay)
 }
 \description{
-Uses \code{IRdisplay::display_png()} when running under Jupyter/IRkernel;
+Uses \code{IRdisplay::display_png()} when running inside a Jupyter/IRkernel
+session;
 otherwise returns the raw PNG bytes.
+}
+\examples{
+\donttest{
+fib <- Sequence("A000045")
+img <- get_graph_image(fib)
+}
+
 }

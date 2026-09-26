@@ -4,7 +4,7 @@
 \alias{create_bfile}
 \title{Create a b-file text file for an OEIS sequence}
 \usage{
-create_bfile(oeis_id, data, offset = 1L, output_path = NULL)
+create_bfile(oeis_id, data, offset = 1L, output_path)
 }
 \arguments{
 \item{oeis_id}{Character string (e.g., "A213676")}
@@ -14,9 +14,9 @@ create_bfile(oeis_id, data, offset = 1L, output_path = NULL)
 
 \item{offset}{Integer starting index. Defaults to 1}
 
-\item{output_path}{Directory or exact file path to save the b-file. If
-\code{NULL} (default), saves to the current working directory using the
-standard b-file name (e.g., "b213676.txt")}
+\item{output_path}{Directory or exact file path to save the b-file. When
+a directory is given, the standard b-file name (e.g., "b213676.txt") is
+used inside it}
 }
 \value{
 Character string: the path to the created b-file
@@ -24,4 +24,11 @@ Character string: the path to the created b-file
 \description{
 Writes sequence values in the standard b-file format ("n a(n)", one pair
 per line).
+}
+\examples{
+path <- create_bfile("A000045", c(0, 1, 1, 2, 3, 5, 8), offset = 0,
+                     output_path = tempdir())
+readLines(path)
+unlink(path)
+
 }
