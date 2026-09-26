@@ -3,8 +3,12 @@
 ## Status
 
 - **0.3.1 submitted to CRAN on 2026-09-26** (first submission), from commit
-  `69a2a93`; tag `v0.3.1` points at that commit. Awaiting automatic checks,
-  then manual review (typically a few days to two weeks).
+  `69a2a93`; tag `v0.3.1` points at that commit.
+- **CRAN pretests passed (2026-09-26):** Windows and Debian r-devel, 1 NOTE
+  each (the expected one below); examples ran against OEIS on both. Now
+  **pending manual inspection**: CRAN says a team member typically responds
+  within 10 working days (by about 2026-10-10). Logs (kept ~7 days):
+  <https://win-builder.r-project.org/incoming_pretest/oeis.tools_0.3.1_20260926_120447/>
 - Pre-submission checks: 0 errors, 0 warnings. Only NOTE: "New submission"
   plus "possibly misspelled: OEIS" (false positive, explained in
   `cran-comments.md`).
