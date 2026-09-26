@@ -16,9 +16,8 @@ A \code{gmp::bigz} vector or NULL
 Get B-file Data
 }
 \examples{
-\donttest{
+\dontshow{if (oeis_available()) withAutoprint(\{ # examplesIf}
 primes <- BFile("A000040")
 head(get_bfile_data(primes))
-}
-
+\dontshow{\}) # examplesIf}
 }

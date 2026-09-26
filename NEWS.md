@@ -7,6 +7,8 @@
 
 ## Bug fixes and improvements
 
+* New `oeis_available()` reports whether the OEIS web service can be reached
+  (it may refuse requests from some cloud and CI hosts).
 * `get_graph_image()` failed whenever 'IRdisplay' was installed (it passed an
   argument `display_png()` does not accept). It now calls `display_png()`
   correctly, and only inside a Jupyter kernel.
@@ -19,7 +21,7 @@
 ## Documentation
 
 * Every exported function now has examples; examples that need the internet
-  are wrapped in `\donttest{}`.
+  run only when `oeis_available()` is `TRUE`.
 * Documented the return value of `plot.Sequence()`.
 * New package title and description.
 

@@ -55,6 +55,27 @@ OEIS_URL <- "https://oeis.org"
   log10(lead) + shift
 }
 
+#' Check whether the OEIS web service is reachable
+#'
+#' Sends a small request to the OEIS search API. Useful to guard code that
+#' needs the network, since the OEIS may be down or may refuse requests from
+#' some hosts (for example, cloud or continuous-integration servers).
+#'
+#' @param timeout Numeric timeout in seconds
+#'
+#' @return `TRUE` if the OEIS answered successfully, `FALSE` otherwise
+#'
+#' @examples
+#' oeis_available()
+#'
+#' @export
+oeis_available <- function(timeout = 5) {
+  tryCatch({
+    .oeis_perform(oeis_url("A000045", fmt = "json"), timeout = timeout)
+    TRUE
+  }, error = function(e) FALSE)
+}
+
 #' Check if an OEIS ID is valid
 #'
 #' Validates that the OEIS ID follows the format: A followed by exactly 6 digits

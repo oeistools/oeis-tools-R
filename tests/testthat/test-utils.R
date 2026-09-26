@@ -89,3 +89,15 @@ test_that("network failures raise an informative error naming the URL", {
     "Could not retrieve https://oeis.org/A000045 from the OEIS.*Could not resolve host"
   )
 })
+
+test_that("oeis_available is TRUE when the OEIS answers", {
+  testthat::local_mocked_bindings(
+    .oeis_perform = function(url, timeout = 10) structure(list(), class = "httr2_response")
+  )
+  expect_true(oeis_available())
+})
+
+test_that("oeis_available is FALSE on network or HTTP errors", {
+  testthat::local_mocked_bindings(.oeis_perform = function(url, timeout = 10) stop("HTTP 403 Forbidden."))
+  expect_false(oeis_available())
+})

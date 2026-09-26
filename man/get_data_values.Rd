@@ -16,9 +16,8 @@ A \code{gmp::bigz} vector of terms
 Return the parsed sequence data terms
 }
 \examples{
-\donttest{
+\dontshow{if (oeis_available()) withAutoprint(\{ # examplesIf}
 fib <- Sequence("A000045")
 get_data_values(fib)[1:10]
-}
-
+\dontshow{\}) # examplesIf}
 }

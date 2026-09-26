@@ -20,9 +20,8 @@ Prefers the sequence's embedded b-file (richer, longer) and falls back to
 the terms parsed from the OEIS JSON entry.
 }
 \examples{
-\donttest{
+\dontshow{if (oeis_available()) withAutoprint(\{ # examplesIf}
 fib <- Sequence("A000045")
 plot(fib, n = 50)
-}
-
+\dontshow{\}) # examplesIf}
 }

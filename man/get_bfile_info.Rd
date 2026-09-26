@@ -17,9 +17,8 @@ first, last, min, max
 Get B-file Information
 }
 \examples{
-\donttest{
+\dontshow{if (oeis_available()) withAutoprint(\{ # examplesIf}
 fib <- Sequence("A000045")
 get_bfile_info(fib)
-}
-
+\dontshow{\}) # examplesIf}
 }

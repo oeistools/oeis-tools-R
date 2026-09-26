@@ -10,7 +10,7 @@ them with 'ggplot2'.
 ## Test environments
 
 * Local: Ubuntu Linux, R release
-* GitHub Actions: ubuntu-latest, R release
+* GitHub Actions: ubuntu-latest, R release (OEIS unreachable: online examples skipped)
 
 ## R CMD check results
 
@@ -26,7 +26,9 @@ them with 'ggplot2'.
 
 The package accesses the OEIS web service. Tests use mocked HTTP responses and
 never touch the network, and the vignette chunks that need the network are not
-evaluated. Examples that need the internet are wrapped in `\donttest{}`.
+evaluated. Examples that need the internet use `@examplesIf oeis_available()`,
+so they are skipped when the OEIS cannot be reached. (The OEIS returns
+HTTP 403 to some cloud hosts, e.g. GitHub Actions runners.)
 Network failures produce an informative error (or, for b-files, a warning
 and an empty object) rather than an uncaught failure.
 

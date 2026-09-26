@@ -16,9 +16,8 @@ Integer vector of the first-column indices, or NULL when parsing failed
 Get B-file Indices
 }
 \examples{
-\donttest{
+\dontshow{if (oeis_available()) withAutoprint(\{ # examplesIf}
 primes <- BFile("A000040")
 head(get_bfile_indices(primes))
-}
-
+\dontshow{\}) # examplesIf}
 }

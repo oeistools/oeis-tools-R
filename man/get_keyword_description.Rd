@@ -18,9 +18,8 @@ Character string with description, or NULL
 Instance-method wrapper around \code{\link[=oeis_keyword_description]{oeis_keyword_description()}}.
 }
 \examples{
-\donttest{
+\dontshow{if (oeis_available()) withAutoprint(\{ # examplesIf}
 fib <- Sequence("A000045")
 get_keyword_description(fib, fib$keyword[1])
-}
-
+\dontshow{\}) # examplesIf}
 }

@@ -7,11 +7,9 @@
 #'
 #' @return An object of class "BFile"
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf oeis_available()
 #' primes <- BFile("A000040")
 #' primes
-#' }
 #'
 #' @export
 BFile <- function(oeis_id) {
@@ -40,11 +38,9 @@ BFile <- function(oeis_id) {
 #'
 #' @return Character string
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf oeis_available()
 #' primes <- BFile("A000040")
 #' get_filename(primes)
-#' }
 #'
 #' @export
 get_filename <- function(bfile) {
@@ -62,11 +58,9 @@ get_filename.BFile <- function(bfile) {
 #'
 #' @return Character string
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf oeis_available()
 #' primes <- BFile("A000040")
 #' get_url(primes)
-#' }
 #'
 #' @export
 get_url <- function(bfile) {
@@ -84,11 +78,9 @@ get_url.BFile <- function(bfile) {
 #'
 #' @return A `gmp::bigz` vector or NULL
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf oeis_available()
 #' primes <- BFile("A000040")
 #' head(get_bfile_data(primes))
-#' }
 #'
 #' @export
 get_bfile_data <- function(bfile) {
@@ -106,11 +98,9 @@ get_bfile_data.BFile <- function(bfile) {
 #'
 #' @return Integer vector of the first-column indices, or NULL when parsing failed
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf oeis_available()
 #' primes <- BFile("A000040")
 #' head(get_bfile_indices(primes))
-#' }
 #'
 #' @export
 get_bfile_indices <- function(bfile) {
@@ -175,12 +165,10 @@ create_bfile <- function(oeis_id, data, offset = 1L, output_path) {
 #' @return A ggplot2 plot object when `return_plot = TRUE`; otherwise
 #'   invisible NULL
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf oeis_available()
 #' primes <- BFile("A000040")
 #' plot_data(primes, n = 100, plot_style = "scatter")
 #' g <- plot_data(primes, n = 100, show = FALSE, return_plot = TRUE)
-#' }
 #'
 #' @export
 plot_data <- function(bfile, n = NULL, plot_style = "line", ...) {

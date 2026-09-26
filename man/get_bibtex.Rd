@@ -16,9 +16,8 @@ Character string with a BibTeX \verb{@misc} entry
 Build a BibTeX @misc entry citing this OEIS sequence
 }
 \examples{
-\donttest{
+\dontshow{if (oeis_available()) withAutoprint(\{ # examplesIf}
 fib <- Sequence("A000045")
 cat(get_bibtex(fib))
-}
-
+\dontshow{\}) # examplesIf}
 }

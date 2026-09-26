@@ -32,9 +32,8 @@ session;
 otherwise returns the raw PNG bytes.
 }
 \examples{
-\donttest{
+\dontshow{if (oeis_available()) withAutoprint(\{ # examplesIf}
 fib <- Sequence("A000045")
 img <- get_graph_image(fib)
-}
-
+\dontshow{\}) # examplesIf}
 }

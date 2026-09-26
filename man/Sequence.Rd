@@ -18,9 +18,8 @@ Fetches an OEIS entry (and its b-file) over the internet.
 OEIS Sequence Class
 }
 \examples{
-\donttest{
+\dontshow{if (oeis_available()) withAutoprint(\{ # examplesIf}
 fib <- Sequence("A000045")
 fib$name
-}
-
+\dontshow{\}) # examplesIf}
 }

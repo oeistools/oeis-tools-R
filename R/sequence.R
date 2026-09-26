@@ -13,11 +13,9 @@
 #'
 #' Fetches an OEIS entry (and its b-file) over the internet.
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf oeis_available()
 #' fib <- Sequence("A000045")
 #' fib$name
-#' }
 #'
 #' @export
 Sequence <- function(oeis_id) {
@@ -77,11 +75,9 @@ Sequence <- function(oeis_id) {
 #' @return List with b-file metadata: available, filename, url, length,
 #'   first, last, min, max
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf oeis_available()
 #' fib <- Sequence("A000045")
 #' get_bfile_info(fib)
-#' }
 #'
 #' @export
 get_bfile_info <- function(seq) {
@@ -124,11 +120,9 @@ get_bfile_info.Sequence <- function(seq) {
 #'
 #' @return Character vector of unique OEIS IDs, in first-seen order
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf oeis_available()
 #' fib <- Sequence("A000045")
 #' head(get_xref_ids(fib))
-#' }
 #'
 #' @export
 get_xref_ids <- function(seq) {
@@ -149,12 +143,10 @@ get_xref_ids.Sequence <- function(seq) {
 #'
 #' @return Raw vector of PNG bytes
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf oeis_available()
 #' fib <- Sequence("A000045")
 #' png_bytes <- get_graph_png(fib)
 #' length(png_bytes)
-#' }
 #'
 #' @export
 get_graph_png <- function(seq, timeout = 10, use_cache = TRUE) {
@@ -187,11 +179,9 @@ get_graph_png.Sequence <- function(seq, timeout = 10, use_cache = TRUE) {
 #'
 #' @return Raw vector of PNG bytes (invisibly, when displayed via IRdisplay)
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf oeis_available()
 #' fib <- Sequence("A000045")
 #' img <- get_graph_image(fib)
-#' }
 #'
 #' @export
 get_graph_image <- function(seq, width = NULL, height = NULL, timeout = 10, use_cache = TRUE) {
@@ -217,11 +207,9 @@ get_graph_image.Sequence <- function(seq, width = NULL, height = NULL, timeout =
 #'
 #' @return A `gmp::bigz` vector of terms
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf oeis_available()
 #' fib <- Sequence("A000045")
 #' get_data_values(fib)[1:10]
-#' }
 #'
 #' @export
 get_data_values <- function(seq) {
@@ -242,11 +230,9 @@ get_data_values.Sequence <- function(seq) {
 #'
 #' @return Character string with description, or NULL
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf oeis_available()
 #' fib <- Sequence("A000045")
 #' get_keyword_description(fib, fib$keyword[1])
-#' }
 #'
 #' @export
 get_keyword_description <- function(seq, keyword_tag) {
@@ -264,11 +250,9 @@ get_keyword_description.Sequence <- function(seq, keyword_tag) {
 #'
 #' @return Character string with a BibTeX `@misc` entry
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf oeis_available()
 #' fib <- Sequence("A000045")
 #' cat(get_bibtex(fib))
-#' }
 #'
 #' @export
 get_bibtex <- function(seq) {
@@ -324,11 +308,9 @@ get_bibtex.Sequence <- function(seq) {
 #' @return The value returned by [plot_data()]: a ggplot object when
 #'   `return_plot = TRUE`, otherwise invisible NULL
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf oeis_available()
 #' fib <- Sequence("A000045")
 #' plot(fib, n = 50)
-#' }
 #'
 #' @export
 plot.Sequence <- function(x, ...) {

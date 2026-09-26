@@ -19,9 +19,8 @@ An object of class "BFile"
 OEIS B-file Class
 }
 \examples{
-\donttest{
+\dontshow{if (oeis_available()) withAutoprint(\{ # examplesIf}
 primes <- BFile("A000040")
 primes
-}
-
+\dontshow{\}) # examplesIf}
 }
