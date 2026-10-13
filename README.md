@@ -1,5 +1,9 @@
 # oeis.tools
 
+[![CRAN status](https://www.r-pkg.org/badges/version/oeis.tools)](https://CRAN.R-project.org/package=oeis.tools)
+[![CRAN checks](https://badges.cranchecks.info/worst/oeis.tools.svg)](https://cran.r-project.org/web/checks/check_results_oeis.tools.html)
+[![CRAN downloads](https://cranlogs.r-pkg.org/badges/grand-total/oeis.tools)](https://cran.r-project.org/package=oeis.tools)
+[![CRAN downloads per month](https://cranlogs.r-pkg.org/badges/oeis.tools)](https://cran.r-project.org/package=oeis.tools)
 [![R-CMD-check](https://github.com/oeistools/oeis-tools-R/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/oeistools/oeis-tools-R/actions/workflows/R-CMD-check.yaml)
 [![lint](https://github.com/oeistools/oeis-tools-R/actions/workflows/lint.yaml/badge.svg)](https://github.com/oeistools/oeis-tools-R/actions/workflows/lint.yaml)
 [![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
@@ -13,6 +17,14 @@ R interface to the [Online Encyclopedia of Integer Sequences (OEIS)](https://oei
 This is the R port of [oeis-tools](https://github.com/oeistools/oeis-tools), the Python package by the same author. The public API (function and class names) matches the Python package where R's type system and idioms allow it.
 
 ## Installation
+
+Install the released version from CRAN:
+
+```r
+install.packages("oeis.tools")
+```
+
+Or the development version from GitHub:
 
 ```r
 # install.packages("pak")
